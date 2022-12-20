@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup >
+      <None Include="$(MSBuildThisFileDirectory)\PaddleSegLib\*.*">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+		<None Include="$(MSBuildThisFileDirectory)\PaddleSegLib\inference\*.*">
+			<Link>inference\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="$(MSBuildThisFileDirectory)\PaddleSegLib\inference\modnet-mobilenetv2\*.*">
+			<Link>inference\modnet-mobilenetv2\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+    </ItemGroup>
+
+  <PropertyGroup>
+    <BuildX86 Condition="'$(PlatformTarget)'=='x86' OR '$(Platform)'=='x86' OR ('$(Platform)'=='AnyCPU' AND '$(Prefer32Bit)'=='True' )">True</BuildX86>
+    <ErrorMessage Condition="'$(BuildX86)'=='True' "> PaddleSegSharp不适用x86平台(32位),请修改目标平台</ErrorMessage>
+  </PropertyGroup>
+
+  <Target Name="PackageBuildImports" BeforeTargets="PrepareForBuild">
+    <Error Text="'$(ErrorMessage)'" Condition="'$(ErrorMessage)'!=''" />
+  </Target>
+</Project>

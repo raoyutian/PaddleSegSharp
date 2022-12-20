@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>
+      net35;
+      net40;
+      net45;
+      net451;
+      net452;
+      net46;
+      net461;
+      net462;
+      net47;
+      net471;
+      net472;
+      net48;
+      net481;
+      netstandard2.0;	netstandard2.1;netcoreapp3.1;
+      net5.0;net6.0;net7.0
+    </TargetFrameworks>
+	   <PackageTags>Paddle;Seg;AI;CV;PaddleSeg;Matting;PPMatting;PaddleSegSharp;NET;Csharp</PackageTags>
+	  <IsPublishable>False</IsPublishable>
+	   <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+	  <Authors>raoyutian</Authors>
+    <Copyright>raoyutian</Copyright>
+	  <Company />
+    
+	  <Description>This project is based on PaddleSeg package Net class library. PaddleSeg is an end-to-end high-efficent development toolkit for image segmentation based on PaddlePaddle, which helps both developers and researchers in the whole process of designing segmentation models, training models, optimizing performance and inference speed, and deploying models. A lot of well-trained models and various real-world applications in both industry and academia help users conveniently build hands-on experiences in image segmentation.</Description>
+	  <PackageProjectUrl>https://gitee.com/raoyutian/PaddleSegSharp</PackageProjectUrl>
+    <RepositoryUrl>https://gitee.com/raoyutian/PaddleSegSharp</RepositoryUrl>
+	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	  <AssemblyVersion>1.0.2</AssemblyVersion>
+	  <FileVersion>1.0.2</FileVersion>
+	  <Version>1.0.2</Version>
+	  <Platforms>x64</Platforms>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+     
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|anyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netstandard2.1' Or  '$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'net5.0' Or '$(TargetFramework)' == 'net6.0'  Or '$(TargetFramework)' == 'net7.0' ">
+    <PackageReference Include="System.Drawing.Common">
+      <Version>6.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+	
+	<ItemGroup>
+		 <None Include="$(SolutionDir)PaddleSegSharp\PaddleSegLib\**">
+			<Pack>true</Pack>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+			<PackagePath>build\PaddleSegLib</PackagePath>
+		</None>
+
+		<None Include="$(SolutionDir)PaddleSegSharp\PaddleSegSharp.targets">
+			<Pack>true</Pack>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+			<PackagePath>build</PackagePath>
+		</None>
+	</ItemGroup>
+	
+</Project>
